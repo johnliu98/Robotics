@@ -2,7 +2,7 @@ package main
 
 import (
     "fmt"
-    "sys"
+    "github.com/johnliu98/robotics/sys"
 )
 
 func main()  {
