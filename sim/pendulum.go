@@ -1,11 +1,9 @@
-package pen
+package sim
 
 import (
 	"fmt"
-	"log"
 	"math"
 
-	"github.com/jinzhu/copier"
 	"gonum.org/v1/gonum/mat"
 )
 
@@ -30,7 +28,7 @@ func NewPendulum() *Pendulum {
 	}
 }
 
-func (p *Pendulum) Update(u *mat.VecDense, dt float64) *mat.VecDense {
+func (p *Pendulum) Update(u mat.Vector, dt float64) mat.Vector {
 	if n, _ := u.Dims(); n != p.nu {
 		fmt.Println("Warning: pen: argument does not match input dimensions")
 	}
@@ -52,15 +50,10 @@ func (p *Pendulum) Update(u *mat.VecDense, dt float64) *mat.VecDense {
 }
 
 func (p *Pendulum) Time() float64 {
-	var t float64
-	err := copier.Copy(t, p.time)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return t
+	return p.time
 }
 
-func (p *Pendulum) State() *mat.VecDense {
+func (p *Pendulum) State() mat.Vector {
 	s := &mat.VecDense{}
 	s.CloneFromVec(p.state)
 	return s

@@ -5,7 +5,7 @@ import (
 )
 
 type Simulation interface {
-	Update(u *mat.VecDense, dt float64) *mat.VecDense
-    State() *mat.VecDense
+	Update(u mat.Vector, dt float64) mat.Vector
+    State() mat.Vector
     Time() float64
 }
